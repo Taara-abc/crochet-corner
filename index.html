@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crochet Corner — Learn, Make, Grow</title>
+<style>
+:root{--bg:#fbf7f2;--paper:#fffdfb;--ink:#493b3c;--muted:#897b7b;--pink:#e9b8c5;--rose:#bd7188;--lav:#d9d0ed;--sage:#c9d9ca;--line:#eee4df;--shadow:0 12px 35px #60414b12}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;background:#fffaf7;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{font-family:Georgia,serif;font-size:25px;font-weight:bold;color:#76505e}.brand span{color:var(--rose)}
+.topright{display:flex;gap:10px;align-items:center}.pill{border-radius:99px;padding:10px 16px;background:#f4e7e9;color:#805567;font-weight:650}
+.shell{max-width:1180px;margin:0 auto;padding:28px 24px 70px}.welcome{background:linear-gradient(115deg,#f4dce2,#eee8f7 65%,#e6eee4);border-radius:26px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:25px;box-shadow:var(--shadow)}
+.welcome h1{font: bold clamp(30px,4vw,48px) Georgia,serif;margin:5px 0 10px}.welcome p{color:#6f6064;max-width:520px;line-height:1.6}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;color:#936779}.hero-art{font-size:90px;filter:drop-shadow(0 8px 6px #9d6c7622)}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.nav button{background:#fff;border:1px solid var(--line);padding:11px 17px;border-radius:99px;color:#725e62;font-weight:650}.nav button.active{background:#765665;color:#fff;border-color:#765665}
+h2{font: bold 27px Georgia,serif;margin:30px 0 15px}h3{margin:0 0 7px;font-size:17px}.muted{color:var(--muted);font-size:14px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:19px;box-shadow:var(--shadow)}.stat{display:flex;align-items:center;gap:13px}.staticon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:#f7e7eb;font-size:22px}.stat strong{font-size:25px;display:block}.progress{height:9px;border-radius:20px;background:#f0e8e5;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,#d69aaa,#9d8bbd);border-radius:20px;width:0}
+.lesson{display:flex;flex-direction:column;gap:10px}.lesson .tag{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#9a7180;font-weight:800}.lesson .emoji{font-size:31px}.lesson button,.primary{background:#79596a;color:#fff;padding:10px 14px;border-radius:12px;font-weight:700}.secondary{background:#f3e8eb;color:#785567;padding:10px 14px;border-radius:12px;font-weight:700}
+.video{aspect-ratio:16/9;width:100%;border:0;border-radius:14px;background:#eee}.video-wrap{background:#fff;border:1px solid var(--line);padding:15px;border-radius:18px}.video-wrap iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}.two{display:grid;grid-template-columns:1.4fr 1fr;gap:17px}.checkrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.checkrow input{accent-color:#a96e83;width:18px;height:18px}.checkrow span{flex:1}.checkrow small{color:var(--muted)}
+.project .emoji{font-size:34px;margin-bottom:10px}.project a,.link{color:#936278;font-weight:700;text-decoration:none}.project a:hover,.link:hover{text-decoration:underline}
+input[type=text],input[type=password],input[type=email]{width:100%;padding:12px 14px;border:1px solid #e5d8d5;border-radius:12px;background:#fff;margin:6px 0 13px;color:var(--ink)}
+.auth{min-height:75vh;display:grid;place-items:center}.authbox{width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:var(--shadow)}.authbox h1{font: bold 34px Georgia,serif}.authbox button{width:100%;padding:13px;border-radius:12px;background:#79596a;color:white;font-weight:700;margin-top:7px}
+.notice{font-size:12px;color:#8a777b;line-height:1.5;margin-top:15px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:15px}.empty{padding:30px;text-align:center;color:var(--muted)}
+footer{text-align:center;padding:25px;color:#97878a;font-size:12px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.welcome{padding:25px}.hero-art{font-size:65px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.top{padding:14px 4vw}.brand{font-size:21px}.shell{padding:18px 14px 50px}.welcome{align-items:flex-start}.hero-art{font-size:48px}.nav{gap:6px}.nav button{padding:9px 12px;font-size:13px}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="brand">🧶 Crochet <span>Corner</span></div>
+ <div class="topright"><span id="userLabel" class="muted"></span><button id="logout" class="pill hidden">Log out</button></div>
+</header>
+<main id="authView" class="shell auth">
+ <section class="authbox">
+  <div class="eyebrow">your little crochet studio</div><h1>Welcome to Crochet Corner 🧶</h1>
+  <p class="muted">Learn a stitch, try a project, and celebrate every little loop.</p>
+  <label for="username">Your name</label><input id="username" type="text" placeholder="e.g. Tara" autocomplete="nickname">
+  <label for="password">Password</label><input id="password" type="password" placeholder="Enter a password" autocomplete="current-password">
+  <button id="enter">Enter my crochet studio</button>
+  <p class="notice">This is a local demo only. The name is saved in this browser; the password is only used to enter this demo and is not a secure online account.</p>
+ </section>
+</main>
+<main id="appView" class="shell hidden">
+ <section class="welcome">
+  <div><div class="eyebrow">make something lovely</div><h1>Hello, <span id="helloName">Crochet Friend</span>! 🌷</h1><p>Your crochet journey starts one stitch at a time. Pick a lesson, grab your yarn, and let's make something!</p><button class="primary" onclick="showTab('learn')">Start learning →</button></div>
+  <div class="hero-art">🧶🪡</div>
+ </section>
+ <nav class="nav">
+  <button class="active" data-tab="home">🏡 Dashboard</button><button data-tab="learn">🪡 Learn stitches</button><button data-tab="videos">▶ Videos</button><button data-tab="projects">🧺 Projects</button><button data-tab="progress">🌱 My progress</button>
+ </nav>
+ <section id="home" class="panel">
+  <div class="grid">
+   <div class="card stat"><div class="staticon">✨</div><div><strong id="learnedCount">0</strong><span class="muted">Stitches learned</span></div></div>
+   <div class="card stat"><div class="staticon">🧺</div><div><strong id="projectCount">0</strong><span class="muted">Projects completed</span></div></div>
+   <div class="card stat"><div class="staticon">🌷</div><div><strong id="percent">0%</strong><span class="muted">Learning progress</span></div></div>
+  </div>
+  <div class="two" style="margin-top:18px">
+   <div class="card"><div class="sectionhead"><div><h3>Your learning journey</h3><p class="muted">Every skill you learn gets you closer to your next project.</p></div><strong id="homePercent">0%</strong></div><div class="progress"><span id="homeBar"></span></div><p class="muted" id="nextTip">Start with the slip knot and foundation chain.</p></div>
+   <div class="card"><h3>🧶 Your next steps</h3><div class="checkrow"><span>Learn how to make a slip knot</span><small>Beginner</small></div><div class="checkrow"><span>Practice chain stitches</span><small>Beginner</small></div><div class="checkrow"><span>Try a little coaster</span><small>Project</small></div></div>
+  </div>
+  <h2>Start with the basics</h2><div id="homeLessons" class="grid"></div>
+ </section>
+ <section id="learn" class="panel hidden"><div class="sectionhead"><div><div class="eyebrow">step by step</div><h2>Learn crochet stitches</h2><p class="muted">Tick each skill when you feel comfortable doing it on your own.</p></div></div><div id="lessonGrid" class="grid"></div></section>
+ <section id="videos" class="panel hidden"><div class="eyebrow">watch and practice</div><h2>All-in-one crochet lesson</h2><p class="muted">Just one video for the stitches. You can pause, replay, and practise each part at your own pace.</p>
+  <div class="video-wrap"><h3>Beginner crochet lesson — stitches in one place</h3><iframe src="https://www.youtube-nocookie.com/embed/GcOzdAzmtNM" title="Beginner crochet lesson covering crochet basics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p class="muted">One beginner lesson to follow along with. The stitch checklist is written below, so you do not need a separate video for every stitch.</p><a class="link" href="https://www.youtube.com/watch?v=GcOzdAzmtNM" target="_blank" rel="noopener">Open this video on YouTube ↗</a></div>
+  <div class="card" style="margin-top:16px"><h3>🧶 Stitches and skills to learn</h3><ol class="muted" style="line-height:1.9;padding-left:22px"><li>Slip knot</li><li>Chain stitch</li><li>Slip stitch</li><li>Single crochet</li><li>Half double crochet</li><li>Double crochet</li><li>Magic ring</li><li>Fasten off and weave in the yarn ends</li></ol><p class="notice">These same skills are listed in “Learn stitches” so you can tick them off as you learn.</p></div>
+ </section>
+ <section id="projects" class="panel hidden"><div class="eyebrow">make it yourself</div><h2>Everyday crochet projects</h2><p class="muted">Choose something useful and fun to make. Mark it complete when you finish!</p><div id="projectGrid" class="grid"></div></section>
+ <section id="progress" class="panel hidden"><div class="eyebrow">look how far you've come</div><h2>My progress 🌱</h2><div class="two"><div class="card"><h3>Overall progress</h3><strong style="font-size:38px" id="progressBig">0%</strong><div class="progress"><span id="progressBar"></span></div><p class="muted" id="progressText">Your learning story is just beginning.</p></div><div class="card"><h3>My crochet goals</h3><p class="muted">A little practice goes a long way. Try to learn one new thing at a time.</p><div id="goalSummary"></div></div></div><h2>Skills checklist</h2><div class="card" id="progressSkills"></div><h2>Finished projects</h2><div class="card" id="finishedProjects"></div></section>
+</main>
+<footer>Made with yarn, creativity & a little bit of patience · Crochet Corner</footer>
+<script>
+const lessons=[
+ {id:'slipknot',name:'Slip knot',emoji:'🪢',level:'Getting started',desc:'The adjustable first loop that goes onto your crochet hook.',tip:'Keep the loop loose enough for your hook to move easily.',video:'https://www.youtube.com/watch?v=GcOzdAzmtNM'},
+ {id:'chain',name:'Chain stitch',emoji:'〰️',level:'Getting started',desc:'A row of connected loops that often forms the foundation of a project.',tip:'Try to keep each chain about the same size.',video:'https://www.youtube.com/watch?v=GcOzdAzmtNM'},
+ {id:'slip',name:'Slip stitch',emoji:'🧵',level:'Beginner',desc:'A short stitch used to join work or move across stitches.',tip:'Pull the yarn through the stitch and the loop on your hook.',video:'https://www.crochetindex.com/videos/'},
+ {id:'single',name:'Single crochet',emoji:'🪡',level:'Beginner',desc:'A neat, compact stitch that is useful for many projects.',tip:'Insert hook, yarn over and pull up a loop; yarn over and pull through both loops.',video:'https://www.youtube.com/watch?v=DqKosP7p5Gc'},
+ {id:'halfdouble',name:'Half double crochet',emoji:'🧶',level:'Beginner',desc:'A stitch taller than single crochet and shorter than double crochet.',tip:'Yarn over before inserting your hook, then pull through all three loops.',video:'https://www.mjsoffthehookdesigns.com/how-to-crochet-for-beginners/'},
+ {id:'double',name:'Double crochet',emoji:'🌼',level:'Beginner',desc:'A taller stitch that makes a flexible fabric and is used in granny squares.',tip:'Yarn over, insert hook, pull up a loop; yarn over and pull through two loops twice.',video:'https://www.youtube.com/watch?v=DqKosP7p5Gc'},
+ {id:'magic',name:'Magic ring',emoji:'⭕',level:'Next step',desc:'An adjustable loop used to begin crochet projects worked in the round.',tip:'Practice slowly and make sure you can pull the centre closed.',video:'https://www.mjsoffthehookdesigns.com/how-to-crochet-for-beginners/'},
+ {id:'finish',name:'Fasten off & weave ends',emoji:'✂️',level:'Next step',desc:'Secure your final stitch and neatly hide the yarn tail.',tip:'Leave a tail long enough to weave in securely.',video:'https://www.crochetindex.com/videos/'}
+];
+const projects=[
+ {id:'coaster',name:'Simple coaster',emoji:'☕',level:'Easy',desc:'A small square or round mat for your cup.',skills:'Chain + single crochet',url:'https://www.youtube.com/results?search_query=easy+crochet+coaster+beginner+tutorial'},
+ {id:'bookmark',name:'Bookmark',emoji:'📖',level:'Easy',desc:'A colourful bookmark for your favourite book.',skills:'Chain + basic stitches',url:'https://www.youtube.com/results?search_query=easy+crochet+bookmark+beginner+tutorial'},
+ {id:'flower',name:'Crochet flower',emoji:'🌸',level:'Easy',desc:'A little flower to decorate a bag or notebook.',skills:'Chain + slip stitch + double crochet',url:'https://www.youtube.com/results?search_query=easy+crochet+flower+beginner+tutorial'},
+ {id:'scrunchie',name:'Scrunchie',emoji:'🎀',level:'Easy',desc:'A handmade accessory using a simple crochet cover.',skills:'Chain + single or double crochet',url:'https://www.youtube.com/results?search_query=easy+crochet+scrunchie+beginner+tutorial'},
+ {id:'pouch',name:'Small pouch',emoji:'👝',level:'Practice',desc:'A useful little pouch for tiny everyday items.',skills:'Chain + single crochet + finishing',url:'https://www.youtube.com/results?search_query=easy+crochet+pouch+beginner+tutorial'},
+ {id:'tote',name:'Mini tote bag',emoji:'👜',level:'Practice',desc:'A small reusable bag to practice making panels and straps.',skills:'Basic stitches + joining',url:'https://www.youtube.com/results?search_query=beginner+crochet+mini+tote+bag+tutorial'},
+ {id:'granny',name:'Granny square',emoji:'🟪',level:'Practice',desc:'A classic colourful square that can become a blanket, bag or cushion.',skills:'Magic ring + double crochet',url:'https://www.youtube.com/results?search_query=easy+beginner+crochet+granny+square+tutorial'},
+ {id:'dishcloth',name:'Kitchen dishcloth',emoji:'🧽',level:'Easy',desc:'A useful washable cloth made with simple stitches.',skills:'Chain + single or half double crochet',url:'https://www.youtube.com/results?search_query=beginner+crochet+dishcloth+tutorial'},
+ {id:'headband',name:'Headband',emoji:'🎀',level:'Easy',desc:'A cosy band made from a simple rectangle or strip.',skills:'Chain + basic stitches + joining',url:'https://www.youtube.com/results?search_query=easy+crochet+headband+beginner+tutorial'},
+ {id:'mugcozy',name:'Mug cozy',emoji:'🍵',level:'Easy',desc:'A little sleeve to decorate a favourite mug. Keep it away from hot rims and handles.',skills:'Chain + single crochet',url:'https://www.youtube.com/results?search_query=beginner+crochet+mug+cozy+tutorial'},
+ {id:'plant',name:'Plant pot cover',emoji:'🪴',level:'Practice',desc:'A decorative cover for a small plant pot.',skills:'Magic ring + working in rounds',url:'https://www.youtube.com/results?search_query=easy+crochet+plant+pot+cover+tutorial'},
+ {id:'keychain',name:'Mini heart keychain',emoji:'💗',level:'Practice',desc:'A tiny heart to decorate a bag or keys.',skills:'Magic ring + double crochet',url:'https://www.youtube.com/results?search_query=beginner+crochet+heart+keychain+tutorial'},
+ {id:'phone',name:'Phone sleeve',emoji:'📱',level:'Practice',desc:'A soft sleeve sized to fit a phone, with a simple flap if you like.',skills:'Chain + single crochet + finishing',url:'https://www.youtube.com/results?search_query=beginner+crochet+phone+pouch+tutorial'},
+ {id:'glasses',name:'Glasses case',emoji:'👓',level:'Practice',desc:'A small protective pouch for glasses or sunglasses.',skills:'Chain + single crochet + seam',url:'https://www.youtube.com/results?search_query=easy+crochet+glasses+case+tutorial'},
+ {id:'bottle',name:'Water bottle holder',emoji:'🧴',level:'Practice',desc:'A handy sling-style holder for carrying a reusable bottle.',skills:'Working in rounds + straps',url:'https://www.youtube.com/results?search_query=beginner+crochet+water+bottle+holder+tutorial'},
+ {id:'basket',name:'Small desk basket',emoji:'🧺',level:'Practice',desc:'A little basket for yarn scraps, clips or craft supplies.',skills:'Single crochet + working in rounds',url:'https://www.youtube.com/results?search_query=easy+crochet+small+basket+tutorial'},
+ {id:'placemat',name:'Placemat',emoji:'🍽️',level:'Practice',desc:'A larger flat mat for a table setting.',skills:'Chain + rows of basic stitches',url:'https://www.youtube.com/results?search_query=beginner+crochet+placemat+tutorial'},
+ {id:'pencilcase',name:'Pencil case',emoji:'✏️',level:'Practice',desc:'A useful zip-free pouch for pencils and stationery.',skills:'Single crochet + joining + optional button',url:'https://www.youtube.com/results?search_query=beginner+crochet+pencil+case+tutorial'}
+];
+let profile=null, state={learned:[],done:[]};
+const $=id=>document.getElementById(id);
+function load(){try{profile=JSON.parse(localStorage.getItem('cc_profile')||'null');state=JSON.parse(localStorage.getItem('cc_state')||'{"learned":[],"done":[]}')}catch(e){profile=null;state={learned:[],done:[]}}}
+function save(){localStorage.setItem('cc_profile',JSON.stringify(profile));localStorage.setItem('cc_state',JSON.stringify(state));}
+function enter(){let name=$('username').value.trim(),password=$('password').value;if(!name||!password){alert('Please enter both your name and password.');return}profile={name};save();renderApp()}
+function logout(){profile=null;localStorage.removeItem('cc_profile');$('appView').classList.add('hidden');$('authView').classList.remove('hidden');$('logout').classList.add('hidden');$('userLabel').textContent=''}
+function showTab(tab){document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));$(tab).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));window.scrollTo({top:0,behavior:'smooth'});if(tab==='progress')renderProgress()}
+function lessonCard(l){let done=state.learned.includes(l.id);return `<article class="card lesson"><div class="emoji">${l.emoji}</div><span class="tag">${l.level}</span><h3>${l.name} ${done?'✓':''}</h3><p class="muted">${l.desc}</p><p class="muted"><b>Practice tip:</b> ${l.tip}</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="${done?'secondary':'primary'}" onclick="toggleLesson('${l.id}')">${done?'✓ Learned':'Mark as learned'}</button></div></article>`}
+function renderLessons(){$('lessonGrid').innerHTML=lessons.map(lessonCard).join('');$('homeLessons').innerHTML=lessons.slice(0,3).map(lessonCard).join('')}
+function renderProjects(){$('projectGrid').innerHTML=projects.map(p=>{let done=state.done.includes(p.id);return `<article class="card project"><div class="emoji">${p.emoji}</div><span class="eyebrow">${p.level}</span><h3>${p.name} ${done?'✓':''}</h3><p class="muted">${p.desc}</p><p class="muted"><b>Skills:</b> ${p.skills}</p><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="${done?'secondary':'primary'}" onclick="toggleProject('${p.id}')">${done?'✓ Completed':'Mark complete'}</button><a class="link" href="${p.url}" target="_blank" rel="noopener">Find a video ↗</a></div></article>`}).join('')}
+function toggleLesson(id){state.learned=state.learned.includes(id)?state.learned.filter(x=>x!==id):[...state.learned,id];save();refresh()}
+function toggleProject(id){state.done=state.done.includes(id)?state.done.filter(x=>x!==id):[...state.done,id];save();refresh()}
+function refresh(){let n=state.learned.length,p=state.done.length,pc=Math.round(n/lessons.length*100);$('learnedCount').textContent=n;$('projectCount').textContent=p;$('percent').textContent=pc+'%';$('homePercent').textContent=pc+'%';$('homeBar').style.width=pc+'%';$('progressBig').textContent=pc+'%';$('progressBar').style.width=pc+'%';$('progressText').textContent=`You've learned ${n} out of ${lessons.length} crochet skills and completed ${p} projects.`;$('nextTip').textContent=n===lessons.length?'Amazing! You have learned all the starter skills.':`Next up: ${lessons.find(x=>!state.learned.includes(x.id)).name}.`;$('goalSummary').innerHTML=`<p>🪡 ${n} of ${lessons.length} skills learned</p><p>🧺 ${p} of ${projects.length} projects completed</p>`;renderLessons();renderProjects();renderProgress()}
+function renderProgress(){$('progressSkills').innerHTML=lessons.map(l=>`<div class="checkrow"><span>${l.emoji} ${l.name}</span><small>${state.learned.includes(l.id)?'✓ Learned':'Not yet'}</small></div>`).join('');let done=projects.filter(p=>state.done.includes(p.id));$('finishedProjects').innerHTML=done.length?done.map(p=>`<div class="checkrow"><span>${p.emoji} ${p.name}</span><small>✓ Completed</small></div>`).join(''):'<div class="empty">Your first finished project will appear here. Keep going! 🌷</div>'}
+function renderApp(){$('authView').classList.add('hidden');$('appView').classList.remove('hidden');$('logout').classList.remove('hidden');$('userLabel').textContent=profile.name;$('helloName').textContent=profile.name;document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));renderLessons();renderProjects();refresh();showTab('home')}
+$('enter').onclick=enter;$('logout').onclick=logout;$('username').addEventListener('keydown',e=>{if(e.key==='Enter')enter()});$('password').addEventListener('keydown',e=>{if(e.key==='Enter')enter()});load();if(profile)renderApp();
+</script>
+</body></html>
